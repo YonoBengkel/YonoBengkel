@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="846" height="546" viewBox="0 0 846 546" role="img">
+  <text x="0" y="26" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19" font-weight="700" fill="#e6edf3" letter-spacing="1">SYSTEM MAP — SATU ALUR, DARI DATA MENTAH KE KEPUTUSAN</text>
+  <text x="846" y="26" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19" font-weight="400" fill="#9198a1" text-anchor="end">FIG. 01</text>
+  <line x1="0" y1="40" x2="846" y2="40" stroke="#3d444d" stroke-width="1"/>
+  <rect x="0" y="64" width="236" height="64" rx="6" fill="#161b22" stroke="#3d444d" stroke-width="1"/>
+  <text x="18" y="92" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="20" font-weight="700" fill="#d9a441">YONOBENGKEL</text>
+  <text x="18" y="116" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#9198a1">32 repositori publik</text>
+  <path d="M118 130 L118 154" stroke="#3d444d" stroke-width="1" fill="none" stroke-dasharray="3 4"/>
+  <path d="M118 154 L162 154" stroke="#3d444d" stroke-width="1" fill="none" stroke-dasharray="3 4"/>
+  <text x="172" y="160" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="17" font-weight="700" fill="#d9a441" letter-spacing="1">DATA ENGINEERING</text>
+  <text x="172" y="188" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="17" font-weight="400" fill="#9198a1">Medallion · EventDriven-Streaming · Ingestion</text>
+  <text x="172" y="212" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="17" font-weight="400" fill="#9198a1">AnalyticsEngineering</text>
+  <path d="M118 130 L118 244" stroke="#3d444d" stroke-width="1" fill="none" stroke-dasharray="3 4"/>
+  <path d="M118 244 L162 244" stroke="#3d444d" stroke-width="1" fill="none" stroke-dasharray="3 4"/>
+  <text x="172" y="250" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="17" font-weight="700" fill="#d9a441" letter-spacing="1">QUALITY</text>
+  <text x="172" y="278" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="17" font-weight="400" fill="#9198a1">Data-Quality</text>
+  <path d="M118 130 L118 310" stroke="#3d444d" stroke-width="1" fill="none" stroke-dasharray="3 4"/>
+  <path d="M118 310 L162 310" stroke="#3d444d" stroke-width="1" fill="none" stroke-dasharray="3 4"/>
+  <text x="172" y="316" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="17" font-weight="700" fill="#d9a441" letter-spacing="1">MACHINE LEARNING</text>
+  <text x="172" y="344" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="17" font-weight="400" fill="#9198a1">ara-26 · RNN · Goal-Scorer · HeartClass</text>
+  <path d="M118 130 L118 376" stroke="#3d444d" stroke-width="1" fill="none" stroke-dasharray="3 4"/>
+  <path d="M118 376 L162 376" stroke="#3d444d" stroke-width="1" fill="none" stroke-dasharray="3 4"/>
+  <text x="172" y="382" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="17" font-weight="700" fill="#d9a441" letter-spacing="1">FUNDAMENTALS</text>
+  <text x="172" y="410" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="17" font-weight="400" fill="#9198a1">XOR-Multi-Layer-Perceptron · MLP-Digits · NN-Parameter</text>
+  <path d="M118 130 L118 442" stroke="#3d444d" stroke-width="1" fill="none" stroke-dasharray="3 4"/>
+  <path d="M118 442 L162 442" stroke="#3d444d" stroke-width="1" fill="none" stroke-dasharray="3 4"/>
+  <text x="172" y="448" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="17" font-weight="700" fill="#d9a441" letter-spacing="1">AGENTS &amp; APPS</text>
+  <text x="172" y="476" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="17" font-weight="400" fill="#9198a1">agent · Kino · Warungku · Portofolio</text>
+  <text x="0" y="528" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="16" font-weight="400" fill="#9198a1">garis putus — data bergerak</text>
+</svg>

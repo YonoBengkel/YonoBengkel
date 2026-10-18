@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="846" height="300" viewBox="0 0 846 300" role="img">
+  <style>.mk{transform-box:fill-box;transform-origin:center;animation:rise 6s ease-in-out infinite}@keyframes rise{0%{opacity:.18;transform:scale(.90) rotate(-8deg)}20%{opacity:1;transform:scale(1) rotate(0)}82%{opacity:1;transform:scale(1) rotate(0)}100%{opacity:.18;transform:scale(.90) rotate(-8deg)}}.rg{transform-box:fill-box;transform-origin:center;animation:ring 6s ease-out infinite}@keyframes ring{0%{opacity:.5;transform:scale(.55)}55%{opacity:0;transform:scale(1.25)}100%{opacity:0;transform:scale(1.25)}}@media(prefers-reduced-motion:reduce){.mk,.rg{animation:none}.mk{opacity:1}.rg{opacity:0}}</style>
+  <rect x="0" y="0" width="300" height="300" rx="8" fill="#f6f8fa" stroke="#d1d9e0" stroke-width="1"/>
+  <circle class="rg" cx="150.0" cy="150" r="104" fill="none" stroke="#8a5a00" stroke-width="1.5"/>
+  <g class="mk" transform="translate(60.0 60) scale(0.703)"><path fill-rule="evenodd" fill="#241206" d="M 128 30 L 226 128 L 128 226 L 30 128 Z M 108 70 L 148 70 L 148 186 L 108 186 Z"/></g>
+  <text x="344" y="92" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="62" font-weight="700" fill="#1f2328" letter-spacing="-1">ILHAM</text>
+  <text x="344" y="156" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="62" font-weight="200" fill="#59636e" letter-spacing="-1">BINTANG</text>
+  <text x="344" y="220" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="62" font-weight="700" fill="#1f2328" letter-spacing="-1">SATRIA</text>
+  <line x1="344" y1="252" x2="846" y2="252" stroke="#d1d9e0" stroke-width="1"/>
+  <text x="344" y="286" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#59636e">Data · Machine Learning · Surabaya</text>
+</svg>
