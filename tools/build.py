@@ -132,10 +132,13 @@ def band(num, label, t) -> str:
 
 
 def whoami(t) -> str:
-    b = text(0, 38, "AI Engineer intern di Ideola sejak Juli 2026.", size=26, t=t)
-    b += text(0, 84, "Mengejar kenapa metode bekerja, bukan daftar tool yang memakainya.",
-              size=24, fill="muted", t=t)
-    return svg(108, b)
+    b = text(0, 38, "I like the whole chain: raw data, pipelines, statistics,", size=25, t=t)
+    b += text(0, 74, "models, and the dashboard someone decides from.", size=25, t=t)
+    b += text(0, 128, "What draws me is the reasoning under the tooling — what a", size=23,
+              fill="muted", t=t)
+    b += text(0, 162, "method assumes, and where that assumption breaks.", size=23,
+              fill="muted", t=t)
+    return svg(186, b)
 
 
 # --------------------------------------------------------------- FIG. 01 map
@@ -145,24 +148,24 @@ def whoami(t) -> str:
 # Hub and spokes. Each node is (repo, one-line subtitle); the groups are placed
 # on the four sides of the hub so no two boxes ever collide.
 MAP_TOP = ("FUNDAMENTALS", [
-    ("XOR-Perceptron", "batas yang bukan garis"),
-    ("MLP-Digits", "grid 8×8 · sklearn"),
+    ("XOR-Perceptron", "a boundary no line draws"),
+    ("MLP-Digits", "8×8 grid · sklearn"),
 ])
 MAP_LEFT = ("DATA ENGINEERING", [
     ("Medallion", "bronze → silver → gold"),
-    ("EventDriven-Streaming", "Kafka · pesan tak urut"),
-    ("Ingestion", "pengambilan terjadwal"),
-    ("Data-Quality", "6 dimensi · drift 3σ"),
+    ("EventDriven-Streaming", "Kafka · out-of-order"),
+    ("Ingestion", "scheduled pulls"),
+    ("Data-Quality", "6 dimensions · 3σ drift"),
 ])
 MAP_RIGHT = ("MACHINE LEARNING", [
-    ("ara-26", "segmentasi · Kaggle"),
-    ("RNN", "deret waktu"),
-    ("Goal-Scorer", "prediksi pertandingan"),
-    ("HeartClass", "klasifikasi klinis"),
+    ("ara-26", "segmentation · Kaggle"),
+    ("RNN", "time series"),
+    ("Goal-Scorer", "match prediction"),
+    ("HeartClass", "clinical classification"),
 ])
 MAP_BOTTOM = ("AGENTS & APPS", [
-    ("agent", "7 skrip · knowledge OS"),
-    ("Warungku", "stok · perkiraan"),
+    ("agent", "7 scripts · knowledge OS"),
+    ("Warungku", "stock · forecasting"),
 ])
 
 
@@ -184,7 +187,7 @@ def system_map(t) -> str:
     hx, hy, hw, hh = 318, 326, 210, 72          # hub box
     cx, cy = hx + hw / 2, hy + hh / 2
 
-    b = text(0, 26, "SYSTEM MAP — SATU ALUR, DARI DATA MENTAH KE KEPUTUSAN",
+    b = text(0, 26, "SYSTEM MAP — ONE PATH, RAW DATA TO DECISION",
              size=19, weight=700, font=MONO, spacing=1, t=t)
     b += text(W, 26, "FIG. 01", size=19, fill="muted", font=MONO, anchor="end", t=t)
     b += rule(0, 40, W, t)
@@ -211,7 +214,7 @@ def system_map(t) -> str:
     b += rect(hx, hy, hw, hh, t, fill="band", stroke="accent")
     b += text(cx, hy + 32, "YONOBENGKEL.SYS", size=19, weight=700, fill="accent",
               font=MONO, anchor="middle", t=t)
-    b += text(cx, hy + 54, "32 repositori publik", size=15, fill="muted",
+    b += text(cx, hy + 54, "32 public repositories", size=15, fill="muted",
               font=MONO, anchor="middle", t=t)
 
     lab = dict(size=15, weight=700, fill="accent", font=MONO, spacing=1)
@@ -227,14 +230,15 @@ def system_map(t) -> str:
 # Counted from the GitHub API on 2026-10-18 over non-fork public repositories.
 # Primary language only, which is what the API reports per repository.
 LANGS = [("jupyter notebook", 47), ("python", 31), ("typescript", 6),
-         ("html", 6), ("lainnya", 9)]
+         ("html", 6), ("other", 9)]
 YEARS = [("2025", 6), ("2026", 26)]
 # Cumulative repository count at each month that actually saw a new one.
-GROWTH = [("'25", 2), ("", 3), ("", 6), ("'26", 8), ("", 10), ("", 24), ("okt", 32)]
-BIG = [("32", "REPOSITORI"), ("182", "COMMIT PUBLIK"),
-       ("6", "PROYEK DISOROT"), ("3", "DEMO LIVE")]
-STATS = [("repositori publik", "32"), ("commit publik", "182"),
-         ("pull request", "1"), ("repo dengan demo", "3"), ("bahasa utama", "6")]
+GROWTH = [("'25", 2), ("", 3), ("", 6), ("'26", 8), ("", 10), ("", 24), ("oct", 32)]
+BIG = [("32", "REPOSITORIES"), ("182", "PUBLIC COMMITS"),
+       ("6", "FEATURED WORK"), ("3", "LIVE DEMOS")]
+STATS = [("public repositories", "32"), ("public commits", "182"),
+         ("pull requests", "1"), ("repos with a live demo", "3"),
+         ("primary languages", "6")]
 TOTAL_REPOS = 32
 
 
@@ -243,7 +247,7 @@ def telemetry(t) -> str:
 
     No "EST." anywhere: every figure here is counted from the GitHub API.
     """
-    b = text(0, 26, "TELEMETRY — DIHITUNG, BUKAN DITAKSIR", size=19, weight=700,
+    b = text(0, 26, "TELEMETRY — COUNTED, NOT ESTIMATED", size=19, weight=700,
              font=MONO, spacing=1, t=t)
     b += text(W, 26, "FIG. 02", size=19, fill="muted", font=MONO, anchor="end", t=t)
     b += rule(0, 40, W, t)
@@ -251,7 +255,7 @@ def telemetry(t) -> str:
     sub = dict(size=15, weight=700, fill="muted", font=MONO, spacing=1)
 
     # --- column A: language share -------------------------------------
-    b += text(0, 76, "DISTRIBUSI BAHASA", t=t, **sub)
+    b += text(0, 76, "LANGUAGE DISTRIBUTION", t=t, **sub)
     y, barw = 98, 196
     for name, pct in LANGS:
         b += text(0, y + 11, name, size=14, font=MONO, t=t)
@@ -264,7 +268,7 @@ def telemetry(t) -> str:
 
     # --- column B: cumulative growth ----------------------------------
     gx, gw = 300, 268
-    b += text(gx, 76, "LAJU RILIS · 2025 → 2026", t=t, **sub)
+    b += text(gx, 76, "SHIPPING VELOCITY · 2025 → 2026", t=t, **sub)
     gy, gh = 104, 150
     top = GROWTH[-1][1]
     pts = []
@@ -281,11 +285,13 @@ def telemetry(t) -> str:
         if lab:
             b += text(pts[i][0], gy + gh + 22, lab, size=14, fill="muted",
                       font=MONO, anchor="middle", t=t)
-    b += text(gx, gy + gh + 48, "kumulatif — melandai lalu menanjak", size=14,
+    b += text(gx, gy + gh + 48, "cumulative — flat, then steep", size=14,
               fill="muted", font=MONO, t=t)
 
     # --- column C: headline counts ------------------------------------
-    nx = 620
+    # 14px mono with 1px tracking runs ~9.4px per character, so the longest
+    # label needs ~132px; starting the column at 598 keeps it inside 846.
+    nx = 598
     ny = 92
     for num, lab in BIG:
         b += text(nx, ny + 30, num, size=40, weight=700, t=t)
@@ -298,7 +304,7 @@ def telemetry(t) -> str:
     pw = 406
     ph = 46 + len(STATS) * 32
     b += rect(0, py, pw, ph, t, fill=None)
-    b += text(22, py + 32, "STATISTIK GITHUB", t=t, **sub)
+    b += text(22, py + 32, "GITHUB STATS", t=t, **sub)
     yy = py + 62
     for k, v in STATS:
         b += text(22, yy, k, size=15, font=MONO, fill="muted", t=t)
@@ -306,7 +312,7 @@ def telemetry(t) -> str:
         yy += 32
 
     b += rect(W - pw, py, pw, ph, t, fill=None)
-    b += text(W - pw + 22, py + 32, "REPOSITORI PER TAHUN", t=t, **sub)
+    b += text(W - pw + 22, py + 32, "REPOSITORIES PER YEAR", t=t, **sub)
     yy = py + 68
     for name, v in YEARS:
         b += text(W - pw + 22, yy + 10, name, size=15, font=MONO, t=t)
@@ -315,7 +321,7 @@ def telemetry(t) -> str:
         b += text(W - 22, yy + 12, str(v), size=15, weight=700, font=MONO,
                   anchor="end", t=t)
         yy += 42
-    b += text(W - pw + 22, py + ph - 20, "fork tidak dihitung", size=13,
+    b += text(W - pw + 22, py + ph - 20, "forks not counted", size=13,
               fill="muted", font=MONO, t=t)
     return svg(py + ph + 24, b)
 
@@ -459,7 +465,7 @@ def thanks(t) -> str:
     b += '    </g>\n  </g>\n'
 
     ty = y0 + len(BUNNY) * px + 44
-    b += text(W / 2, ty, "TERIMA KASIH SUDAH MAMPIR", size=20, weight=700,
+    b += text(W / 2, ty, "THANKS FOR STOPPING BY", size=20, weight=700,
               fill="accent", font=MONO, spacing=3, anchor="middle", t=t)
     return svg(ty + 28, b)
 
