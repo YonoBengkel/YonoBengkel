@@ -27,32 +27,21 @@
 
 <picture><source media="(prefers-color-scheme: dark)" srcset="assets/dark/s04.svg"/><img src="assets/s04.svg" alt="04 — stack & tools"/></picture>
 
-<div align="center">
-
-<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" width="46" height="46" alt="Python"/>&nbsp;&nbsp;
-<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/jupyter/jupyter-original.svg" width="46" height="46" alt="Jupyter"/>&nbsp;&nbsp;
-<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/pandas/pandas-original.svg" width="46" height="46" alt="pandas"/>&nbsp;&nbsp;
-<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/numpy/numpy-original.svg" width="46" height="46" alt="NumPy"/>&nbsp;&nbsp;
-<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/scikitlearn/scikitlearn-original.svg" width="46" height="46" alt="scikit-learn"/>&nbsp;&nbsp;
-<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/pytorch/pytorch-original.svg" width="46" height="46" alt="PyTorch"/>
-<br/><br/>
-<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original.svg" width="46" height="46" alt="PostgreSQL"/>&nbsp;&nbsp;
-<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/apachekafka/apachekafka-original.svg" width="46" height="46" alt="Apache Kafka"/>&nbsp;&nbsp;
-<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original.svg" width="46" height="46" alt="Docker"/>&nbsp;&nbsp;
-<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original.svg" width="46" height="46" alt="Git"/>&nbsp;&nbsp;
-<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" width="46" height="46" alt="Linux"/>&nbsp;&nbsp;
-<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg" width="46" height="46" alt="TypeScript"/>
-
-</div>
+<img src="assets/stack.svg" alt="Python, Jupyter, pandas, NumPy, scikit-learn, PyTorch, TensorFlow, OpenCV, Plotly, PostgreSQL, MySQL, SQLAlchemy, Apache Kafka, Apache Spark, Apache Airflow, Docker, Git, Linux, Bash, Anaconda, Streamlit, FastAPI, TypeScript, JavaScript, React, Tailwind CSS, VS Code"/>
 
 <picture><source media="(prefers-color-scheme: dark)" srcset="assets/dark/s05.svg"/><img src="assets/s05.svg" alt="05 — telemetry"/></picture>
 <picture><source media="(prefers-color-scheme: dark)" srcset="assets/dark/telemetry.svg"/><img src="assets/telemetry.svg" alt="32 repositori publik: 15 Jupyter Notebook, 10 Python, 2 TypeScript, 2 HTML, 2 lainnya. Repositori baru: 6 pada 2025, 26 pada 2026."/></picture>
 
 <picture><source media="(prefers-color-scheme: dark)" srcset="assets/dark/s06.svg"/><img src="assets/s06.svg" alt="06 — contribution"/></picture>
 
-<picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/YonoBengkel/YonoBengkel/output/snake-dark.svg"/><img src="https://raw.githubusercontent.com/YonoBengkel/YonoBengkel/output/snake.svg" alt="Grafik kontribusi dimakan ular"/></picture>
+<picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/YonoBengkel/YonoBengkel/output/snake-dark.svg?v=2"/><img src="https://raw.githubusercontent.com/YonoBengkel/YonoBengkel/output/snake.svg?v=2" alt="Grafik kontribusi dimakan ular"/></picture>
 
-<picture><source media="(prefers-color-scheme: dark)" srcset="assets/dark/footer.svg"/><img src="assets/footer.svg" alt="Kerja Praktik Januari sampai Juni 2027"/></picture>
+<div align="center">
+
+### [ilhambintangporto.vercel.app](https://ilhambintangporto.vercel.app)
+
+</div>
 
 <!-- Visuals are generated: edit tools/build.py, then run `python tools/build.py`.
+     Icons are vendored by tools/fetch_icons.py into tools/icons/.
      The snake comes from .github/workflows/snake.yml into the `output` branch. -->

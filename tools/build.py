@@ -106,8 +106,13 @@ def hero(t) -> str:
     cx = panel / 2
     b += (f'  <circle class="rg" cx="{cx}" cy="150" r="104" fill="none" '
           f'stroke="{t["accent"]}" stroke-width="1.5"/>\n')
-    b += (f'  <g class="mk" transform="translate({cx - 90} 60) scale(0.703)">'
-          f'<path fill-rule="evenodd" fill="{t["mark"]}" d="{MARK}"/></g>\n')
+    # Placement and animation must live on SEPARATE elements. A CSS transform
+    # replaces the transform attribute outright rather than composing with it,
+    # so putting both on one <g> silently drops the translate and scale the
+    # moment the animation starts.
+    b += (f'  <g transform="translate({cx - 90} 60) scale(0.703)">'
+          f'<g class="mk"><path fill-rule="evenodd" fill="{t["mark"]}" d="{MARK}"/></g>'
+          f'</g>\n')
 
     nx = panel + 44
     b += text(nx, 92, "ILHAM", size=62, weight=700, spacing=-1, t=t)
@@ -236,12 +241,72 @@ def telemetry(t) -> str:
     return svg(y + 90, b)
 
 
-def footer(t) -> str:
-    b = rule(0, 1, W, t)
-    b += text(0, 46, "Kerja Praktik · Januari–Juni 2027", size=23, fill="muted", t=t)
-    b += text(W, 46, "ilhambintangporto.vercel.app", size=23, fill="accent",
-              font=MONO, anchor="end", t=t)
-    return svg(70, b)
+# ------------------------------------------------------------ stack marquee
+
+ICON_DIR = os.path.join(ROOT, "tools", "icons")
+
+
+def _icon_body(name: str) -> tuple[str, str]:
+    """Return (viewBox, inner markup) for a vendored devicon file."""
+    import re
+    raw = open(os.path.join(ICON_DIR, f"{name}.svg"), encoding="utf-8").read()
+    raw = re.sub(r"<\?xml.*?\?>", "", raw, flags=re.S)
+    m = re.search(r"<svg[^>]*viewBox=\"([^\"]+)\"[^>]*>(.*)</svg>", raw, flags=re.S)
+    if not m:
+        raise ValueError(f"{name}: no viewBox")
+    return m.group(1), m.group(2)
+
+
+def stack(t) -> str:
+    """A marquee of inlined tool icons.
+
+    The icons have to be inlined rather than linked: an SVG that GitHub serves
+    through <img> may not fetch external resources, so a remote <image> would
+    render empty. The second copy of the row is drawn with <use> so the
+    gradient ids inside each devicon file are never duplicated.
+    """
+    # Keep the order declared in fetch_icons.py — language, notebook, data,
+    # modelling, storage, streaming, ops, web — rather than whatever order the
+    # directory happens to list in.
+    on_disk = {n[:-4] for n in os.listdir(ICON_DIR) if n.endswith(".svg")}
+    try:
+        from fetch_icons import ICONS
+        names = [n for n, _ in ICONS if n in on_disk]
+        names += sorted(on_disk - set(names))
+    except ImportError:
+        names = sorted(on_disk)
+    size, gap = 52, 40
+    stride = size + gap
+    row_w = stride * len(names)
+    h = 92
+    secs = max(30, len(names) * 1.8)
+
+    css = (
+        f".row{{animation:slide {secs:.0f}s linear infinite}}"
+        f"@keyframes slide{{from{{transform:translateX(0)}}"
+        f"to{{transform:translateX(-{row_w}px)}}}}"
+        "@media(prefers-reduced-motion:reduce){.row{animation:none}}"
+    )
+    b = f'  <style>{css}</style>\n  <defs>\n'
+    for n in names:
+        vb, inner = _icon_body(n)
+        b += (f'    <g id="ic-{n}"><svg width="{size}" height="{size}" '
+              f'viewBox="{vb}">{inner}</svg></g>\n')
+    b += (f'    <linearGradient id="fade" x1="0" x2="1">'
+          f'<stop offset="0" stop-color="#fff" stop-opacity="0"/>'
+          f'<stop offset="0.07" stop-color="#fff" stop-opacity="1"/>'
+          f'<stop offset="0.93" stop-color="#fff" stop-opacity="1"/>'
+          f'<stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>\n')
+    b += (f'    <mask id="edge"><rect x="0" y="0" width="{W}" height="{h}" '
+          f'fill="url(#fade)"/></mask>\n  </defs>\n')
+
+    b += '  <g mask="url(#edge)">\n    <g class="row">\n'
+    for copy in range(2):
+        for i, n in enumerate(names):
+            x = copy * row_w + i * stride
+            b += f'      <use href="#ic-{n}" x="{x}" y="20"/>\n'
+    b += '    </g>\n  </g>\n'
+    return svg(h, b)
 
 
 VISUALS = {
@@ -255,12 +320,15 @@ VISUALS = {
     "s05": lambda t: band("05", "telemetry", t),
     "telemetry": telemetry,
     "s06": lambda t: band("06", "contribution", t),
-    "footer": footer,
 }
 
 # Superseded visuals. Removed on every run so the repo never ships an asset the
 # README stopped referencing.
-RETIRED = ("header", "method", "topsis", "work", "stack")
+# Theme-independent: the tool icons are the same colours on either background,
+# so one copy is generated and the README links it with a plain <img>.
+NEUTRAL = {"stack": stack}
+
+RETIRED = ("header", "method", "topsis", "work", "footer")
 
 
 def main() -> None:
@@ -270,11 +338,19 @@ def main() -> None:
         for name, fn in VISUALS.items():
             with open(os.path.join(out, f"{name}.svg"), "w", encoding="utf-8", newline="\n") as fh:
                 fh.write(fn(THEMES[theme]))
+        if theme == "light":
+            for name, fn in NEUTRAL.items():
+                with open(os.path.join(out, f"{name}.svg"), "w", encoding="utf-8", newline="\n") as fh:
+                    fh.write(fn(THEMES[theme]))
+        else:
+            stale = os.path.join(out, "stack.svg")
+            if os.path.exists(stale):
+                os.remove(stale)
         for name in RETIRED:
             stale = os.path.join(out, f"{name}.svg")
             if os.path.exists(stale):
                 os.remove(stale)
-    print(f"wrote {len(VISUALS) * 2} files into assets/ and assets/dark/")
+    print(f"wrote {len(VISUALS) * 2 + len(NEUTRAL)} files into assets/ and assets/dark/")
 
 
 if __name__ == "__main__":
