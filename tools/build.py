@@ -75,17 +75,138 @@ def rect(x, y, w, h, t, *, fill=None, stroke="line", rx=6, width=1) -> str:
 
 # ------------------------------------------------------------------ visuals
 
+# ------------------------------------------------------- ascii avatar frames
+#
+# The avatar is not decoration: each frame is a picture of something real,
+# computed here rather than drawn by hand, on a COLS x ROWS character grid.
+
+COLS, ROWS = 36, 18
+
+
+def _blank() -> list[list[str]]:
+    return [[" "] * COLS for _ in range(ROWS)]
+
+
+def _render(g) -> list[str]:
+    return ["".join(row).rstrip() for row in g]
+
+
+def frame_normal() -> tuple[str, list[str]]:
+    """A gaussian, drawn as the column heights it actually has."""
+    import math
+    g = _blank()
+    mu, sd = (COLS - 1) / 2, 5.2
+    peak = ROWS - 3
+    for c in range(COLS):
+        h = round(peak * math.exp(-0.5 * ((c - mu) / sd) ** 2))
+        for r in range(h):
+            g[ROWS - 2 - r][c] = "█" if r < h - 1 else "▀"
+    for c in range(COLS):
+        g[ROWS - 1][c] = "─"
+    return "normal", _render(g)
+
+
+def frame_regression() -> tuple[str, list[str]]:
+    """Least squares on fixed points: the line is fitted, not eyeballed."""
+    pts = [(2, 14), (6, 12), (9, 11), (13, 9), (17, 8), (21, 6), (25, 5), (30, 3), (33, 2)]
+    n = len(pts)
+    sx = sum(p[0] for p in pts)
+    sy = sum(p[1] for p in pts)
+    sxx = sum(p[0] * p[0] for p in pts)
+    sxy = sum(p[0] * p[1] for p in pts)
+    b1 = (n * sxy - sx * sy) / (n * sxx - sx * sx)
+    b0 = (sy - b1 * sx) / n
+    g = _blank()
+    for c in range(COLS):
+        r = round(b0 + b1 * c)
+        if 0 <= r < ROWS - 1:
+            g[r][c] = "·"
+    for x, y in pts:
+        if 0 <= y < ROWS - 1:
+            g[y][x] = "o"
+    for c in range(COLS):
+        g[ROWS - 1][c] = "─"
+    return "regression", _render(g)
+
+
+def frame_xor() -> tuple[str, list[str]]:
+    """XOR: the one boundary a single straight line cannot draw."""
+    g = _blank()
+    mx, my = COLS / 2, (ROWS - 1) / 2
+    for r in range(ROWS - 1):
+        for c in range(COLS):
+            same = (c < mx) == (r < my)
+            g[r][c] = "░" if same else "▓"
+    for r, c in ((1, 2), (1, COLS - 3), (ROWS - 3, 2), (ROWS - 3, COLS - 3)):
+        g[r][c] = "o" if (c < mx) == (r < my) else "●"
+    return "xor", _render(g)
+
+
+def frame_pipeline() -> tuple[str, list[str]]:
+    """Bronze, silver, gold: the shape every warehouse in here has."""
+    g = _blank()
+    labels = ("BRONZE", "SILVER", "GOLD")
+    top = 4
+    for i, lab in enumerate(labels):
+        r = top + i * 4
+        g[r][0:12] = list("┌" + "─" * 10 + "┐")
+        g[r + 1][0:12] = list("│" + lab.center(10) + "│")
+        g[r + 2][0:12] = list("└" + "─" * 10 + "┘")
+        if i < 2:
+            g[r + 3][5] = "▼"
+    note = "as-of join"
+    g[top + 5][16:16 + len(note)] = list(note)
+    g[top + 6][16:16 + 12] = list("on txn date")
+    return "pipeline", _render(g)
+
+
+FRAMES = [frame_normal, frame_regression, frame_xor, frame_pipeline]
+SECS = 3  # seconds per frame
+
+
+def ascii_panel(x, y, size, t) -> str:
+    """The animated block. CSS keyframes, because <img>-loaded SVG runs no JS."""
+    lh = size * 1.15
+    total = SECS * len(FRAMES)
+    hold = 100 / len(FRAMES)
+    css = [
+        f'.fr{{opacity:0;animation:cyc {total}s steps(1,end) infinite}}',
+        f'@keyframes cyc{{0%,{hold - 0.01:.2f}%{{opacity:1}}{hold:.2f}%,100%{{opacity:0}}}}',
+        '@media(prefers-reduced-motion:reduce){.fr{animation:none}.fr1{opacity:1}}',
+    ]
+    for i in range(len(FRAMES)):
+        css.append(f'.fr{i + 1}{{animation-delay:{i * SECS}s}}')
+    b = f'  <style>{"".join(css)}</style>\n'
+    for i, fn in enumerate(FRAMES):
+        name, rows = fn()
+        b += f'  <g class="fr fr{i + 1}" aria-label="{name}">\n'
+        for j, row in enumerate(rows):
+            b += (f'    <text x="{x}" y="{y + j * lh:.1f}" xml:space="preserve" '
+                  f'font-family="{MONO}" font-size="{size}" '
+                  f'fill="{t["accent"] if i % 2 else t["ink"]}">{escape(row)}</text>\n')
+        b += '  </g>\n'
+    return b
+
+
 def header(t) -> str:
-    # Widths are eyeballed for the generic sans stack, then given slack: the
-    # reader's font is not ours, so nothing sits closer than ~24px to its
-    # neighbour.
-    b = text(0, 78, "ILHAM", size=80, weight=700, spacing=-1, t=t)
-    b += text(276, 78, "BINTANG", size=80, weight=200, spacing=-1, fill="muted", t=t)
-    b += text(0, 150, "SATRIA", size=80, weight=700, spacing=-1, t=t)
-    b += rule(0, 182, W, t)
-    b += text(0, 218, "Data · Machine Learning · Surabaya", size=25, fill="muted", t=t)
-    b += text(W, 218, "@YonoBengkel", size=25, fill="accent", font=MONO, anchor="end", t=t)
-    return svg(238, b)
+    # Left: the animated ascii block. Right: the name. Widths are eyeballed for
+    # the generic sans stack, then given slack, because the reader's font is
+    # not ours.
+    # 36 columns of monospace advance about 0.6em each, so 13px needs ~281px of
+    # width; the panel is 340 so the grid clears its padding on every side.
+    panel = 340
+    b = rect(0, 0, panel, panel, t, fill="wash", rx=8)
+    b += ascii_panel(30, 48, 13, t)
+
+    nx = panel + 44
+    b += text(nx, 92, "ILHAM", size=62, weight=700, spacing=-1, t=t)
+    b += text(nx, 156, "BINTANG", size=62, weight=200, spacing=-1, fill="muted", t=t)
+    b += text(nx, 220, "SATRIA", size=62, weight=700, spacing=-1, t=t)
+    b += rule(nx, 252, W, t)
+    # No @handle here: GitHub already prints the username beside the README,
+    # and at this width it collided with the subtitle.
+    b += text(nx, 286, "Data · Machine Learning · Surabaya", size=22, fill="muted", t=t)
+    return svg(panel, b)
 
 
 def band(num, label, t) -> str:
