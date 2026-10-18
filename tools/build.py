@@ -142,103 +142,182 @@ def whoami(t) -> str:
 
 # Branch label, then the repositories under it. Only repositories that are
 # public, non-empty and safe to show.
-MAP = [
-    ("DATA ENGINEERING", ["Medallion", "EventDriven-Streaming", "Ingestion", "AnalyticsEngineering"]),
-    ("QUALITY", ["Data-Quality"]),
-    ("MACHINE LEARNING", ["ara-26", "RNN", "Goal-Scorer", "HeartClass"]),
-    ("FUNDAMENTALS", ["XOR-Multi-Layer-Perceptron", "MLP-Digits", "NN-Parameter"]),
-    ("AGENTS & APPS", ["agent", "Kino", "Warungku", "Portofolio"]),
-]
+# Hub and spokes. Each node is (repo, one-line subtitle); the groups are placed
+# on the four sides of the hub so no two boxes ever collide.
+MAP_TOP = ("FUNDAMENTALS", [
+    ("XOR-Perceptron", "batas yang bukan garis"),
+    ("MLP-Digits", "grid 8×8 · sklearn"),
+])
+MAP_LEFT = ("DATA ENGINEERING", [
+    ("Medallion", "bronze → silver → gold"),
+    ("EventDriven-Streaming", "Kafka · pesan tak urut"),
+    ("Ingestion", "pengambilan terjadwal"),
+    ("Data-Quality", "6 dimensi · drift 3σ"),
+])
+MAP_RIGHT = ("MACHINE LEARNING", [
+    ("ara-26", "segmentasi · Kaggle"),
+    ("RNN", "deret waktu"),
+    ("Goal-Scorer", "prediksi pertandingan"),
+    ("HeartClass", "klasifikasi klinis"),
+])
+MAP_BOTTOM = ("AGENTS & APPS", [
+    ("agent", "7 skrip · knowledge OS"),
+    ("Warungku", "stok · perkiraan"),
+])
+
+
+def _node(x, y, name, sub, t, bw=198, bh=58) -> str:
+    # Monospace runs ~0.6em per character, so 17px fits about 19 characters in
+    # a 198px box. Longer repository names step down a size rather than spill.
+    size = 17 if len(name) <= 19 else 14
+    b = rect(x, y, bw, bh, t, fill="wash")
+    b += text(x + bw / 2, y + 26, name, size=size, weight=700, font=MONO,
+              anchor="middle", t=t)
+    b += text(x + bw / 2, y + 46, sub, size=14, fill="muted", font=MONO,
+              anchor="middle", t=t)
+    return b
 
 
 def system_map(t) -> str:
+    """Hub and spokes, with the groups on the four sides of the centre."""
+    H, bw, bh = 724, 198, 58
+    hx, hy, hw, hh = 318, 326, 210, 72          # hub box
+    cx, cy = hx + hw / 2, hy + hh / 2
+
     b = text(0, 26, "SYSTEM MAP — SATU ALUR, DARI DATA MENTAH KE KEPUTUSAN",
              size=19, weight=700, font=MONO, spacing=1, t=t)
     b += text(W, 26, "FIG. 01", size=19, fill="muted", font=MONO, anchor="end", t=t)
     b += rule(0, 40, W, t)
 
-    hub_y = 96
-    b += rect(0, 64, 236, 64, t, fill="wash")
-    b += text(18, 92, "YONOBENGKEL", size=20, weight=700, fill="accent", font=MONO, t=t)
-    b += text(18, 116, "32 repositori publik", size=17, fill="muted", t=t)
+    placed = []                                  # (x, y, name, sub)
+    for i, (name, sub) in enumerate(MAP_TOP[1]):
+        placed.append((206 + i * 264, 92, name, sub))
+    for i, (name, sub) in enumerate(MAP_LEFT[1]):
+        placed.append((8, 190 + i * 104, name, sub))
+    for i, (name, sub) in enumerate(MAP_RIGHT[1]):
+        placed.append((W - bw - 8, 190 + i * 104, name, sub))
+    for i, (name, sub) in enumerate(MAP_BOTTOM[1]):
+        placed.append((206 + i * 264, 620, name, sub))
 
-    y = 168
-    spine, tx = 118, 172
-    # Monospace runs about 0.6em per character, so 17px over the 674px that is
-    # left of the column is roughly 66 characters. Wrap at 58 and the longest
-    # repository name still clears the edge.
-    for label, repos in MAP:
-        lines, cur = [], ""
-        for r in repos:
-            cand = f"{cur} · {r}" if cur else r
-            if len(cand) > 58:
-                lines.append(cur)
-                cur = r
-            else:
-                cur = cand
-        if cur:
-            lines.append(cur)
-        b += (f'  <path d="M{spine} {hub_y + 34} L{spine} {y - 14}" stroke="{t["line"]}" '
-              f'stroke-width="1" fill="none" stroke-dasharray="3 4"/>\n')
-        b += (f'  <path d="M{spine} {y - 14} L{spine + 44} {y - 14}" stroke="{t["line"]}" '
-              f'stroke-width="1" fill="none" stroke-dasharray="3 4"/>\n')
-        b += text(tx, y - 8, label, size=17, weight=700, fill="accent",
-                  font=MONO, spacing=1, t=t)
-        for i, ln in enumerate(lines):
-            b += text(tx, y + 20 + i * 24, ln, size=17, fill="muted", font=MONO, t=t)
-        y += 42 + 24 * len(lines)
-    b += text(0, y + 6, "garis putus — data bergerak", size=16, fill="muted", font=MONO, t=t)
-    return svg(y + 24, b)
+    # Spokes first, so every line passes under the boxes it connects.
+    for x, y, _, _ in placed:
+        bx, by = x + bw / 2, y + bh / 2
+        b += (f'  <path d="M{cx} {cy} L{bx} {by}" stroke="{t["line"]}" '
+              f'stroke-width="1" fill="none"/>\n')
+
+    for x, y, name, sub in placed:
+        b += _node(x, y, name, sub, t)
+
+    b += rect(hx, hy, hw, hh, t, fill="band", stroke="accent")
+    b += text(cx, hy + 32, "YONOBENGKEL.SYS", size=19, weight=700, fill="accent",
+              font=MONO, anchor="middle", t=t)
+    b += text(cx, hy + 54, "32 repositori publik", size=15, fill="muted",
+              font=MONO, anchor="middle", t=t)
+
+    lab = dict(size=15, weight=700, fill="accent", font=MONO, spacing=1)
+    b += text(423, 74, MAP_TOP[0], anchor="middle", t=t, **lab)
+    b += text(8, 174, MAP_LEFT[0], t=t, **lab)
+    b += text(W - 8, 174, MAP_RIGHT[0], anchor="end", t=t, **lab)
+    b += text(423, 700, MAP_BOTTOM[0], anchor="middle", t=t, **lab)
+    return svg(H, b)
 
 
 # --------------------------------------------------------- FIG. 02 telemetry
 
 # Counted from the GitHub API on 2026-10-18 over non-fork public repositories.
 # Primary language only, which is what the API reports per repository.
-LANGS = [("Jupyter Notebook", 15), ("Python", 10), ("TypeScript", 2),
-         ("HTML", 2), ("lainnya", 2)]
+LANGS = [("jupyter notebook", 47), ("python", 31), ("typescript", 6),
+         ("html", 6), ("lainnya", 9)]
 YEARS = [("2025", 6), ("2026", 26)]
+# Cumulative repository count at each month that actually saw a new one.
+GROWTH = [("'25", 2), ("", 3), ("", 6), ("'26", 8), ("", 10), ("", 24), ("okt", 32)]
+BIG = [("32", "REPOSITORI"), ("182", "COMMIT PUBLIK"),
+       ("6", "PROYEK DISOROT"), ("3", "DEMO LIVE")]
+STATS = [("repositori publik", "32"), ("commit publik", "182"),
+         ("pull request", "1"), ("repo dengan demo", "3"), ("bahasa utama", "6")]
 TOTAL_REPOS = 32
 
 
 def telemetry(t) -> str:
+    """Three columns over two panels, following the reference's arrangement.
+
+    No "EST." anywhere: every figure here is counted from the GitHub API.
+    """
     b = text(0, 26, "TELEMETRY — DIHITUNG, BUKAN DITAKSIR", size=19, weight=700,
              font=MONO, spacing=1, t=t)
     b += text(W, 26, "FIG. 02", size=19, fill="muted", font=MONO, anchor="end", t=t)
     b += rule(0, 40, W, t)
 
-    b += text(0, 76, "BAHASA UTAMA PER REPOSITORI", size=16, weight=700, fill="muted",
-              font=MONO, spacing=1, t=t)
-    lx, bw, y = 200, 420, 104
-    top = max(v for _, v in LANGS)
-    for name, v in LANGS:
-        b += text(0, y + 15, name, size=18, font=MONO, t=t)
-        b += rect(lx, y, round(bw * v / top), 22, t, fill=None, stroke=None, rx=3)
-        b += (f'  <rect x="{lx}" y="{y}" width="{round(bw * v / top)}" height="22" '
-              f'rx="3" fill="{t["accent"]}" opacity="0.85"/>\n')
-        b += text(lx + bw + 18, y + 17, str(v), size=18, weight=700, font=MONO, t=t)
-        y += 34
+    sub = dict(size=15, weight=700, fill="muted", font=MONO, spacing=1)
 
-    y += 18
-    b += rule(0, y, W, t, dash="3 5")
-    y += 34
-    b += text(0, y, "REPOSITORI BARU PER TAHUN", size=16, weight=700, fill="muted",
-              font=MONO, spacing=1, t=t)
-    y += 28
+    # --- column A: language share -------------------------------------
+    b += text(0, 76, "DISTRIBUSI BAHASA", t=t, **sub)
+    y, barw = 98, 196
+    for name, pct in LANGS:
+        b += text(0, y + 11, name, size=14, font=MONO, t=t)
+        b += (f'  <rect x="0" y="{y + 18}" width="{barw}" height="9" rx="2" '
+              f'fill="{t["line"]}"/>\n')
+        b += (f'  <rect x="0" y="{y + 18}" width="{round(barw * pct / 47)}" height="9" '
+              f'rx="2" fill="{t["accent"]}"/>\n')
+        b += text(barw + 12, y + 27, f"{pct}%", size=14, font=MONO, fill="muted", t=t)
+        y += 40
+
+    # --- column B: cumulative growth ----------------------------------
+    gx, gw = 300, 268
+    b += text(gx, 76, "LAJU RILIS · 2025 → 2026", t=t, **sub)
+    gy, gh = 104, 150
+    top = GROWTH[-1][1]
+    pts = []
+    for i, (_, v) in enumerate(GROWTH):
+        px = gx + round(gw * i / (len(GROWTH) - 1))
+        py = gy + gh - round(gh * v / top)
+        pts.append((px, py))
+    b += rule(gx, gy + gh, gx + gw, t, stroke="line")
+    b += (f'  <path d="M' + " L".join(f"{x} {y}" for x, y in pts) +
+          f'" stroke="{t["accent"]}" stroke-width="2" fill="none"/>\n')
+    for x, y in pts:
+        b += f'  <circle cx="{x}" cy="{y}" r="3.5" fill="{t["accent"]}"/>\n'
+    for i, (lab, _) in enumerate(GROWTH):
+        if lab:
+            b += text(pts[i][0], gy + gh + 22, lab, size=14, fill="muted",
+                      font=MONO, anchor="middle", t=t)
+    b += text(gx, gy + gh + 48, "kumulatif — melandai lalu menanjak", size=14,
+              fill="muted", font=MONO, t=t)
+
+    # --- column C: headline counts ------------------------------------
+    nx = 620
+    ny = 92
+    for num, lab in BIG:
+        b += text(nx, ny + 30, num, size=40, weight=700, t=t)
+        b += text(nx + 96, ny + 24, lab, size=14, fill="muted", font=MONO,
+                  spacing=1, t=t)
+        ny += 54
+
+    # --- two panels ----------------------------------------------------
+    py = 330
+    pw = 406
+    ph = 46 + len(STATS) * 32
+    b += rect(0, py, pw, ph, t, fill=None)
+    b += text(22, py + 32, "STATISTIK GITHUB", t=t, **sub)
+    yy = py + 62
+    for k, v in STATS:
+        b += text(22, yy, k, size=15, font=MONO, fill="muted", t=t)
+        b += text(pw - 22, yy, v, size=15, weight=700, font=MONO, anchor="end", t=t)
+        yy += 32
+
+    b += rect(W - pw, py, pw, ph, t, fill=None)
+    b += text(W - pw + 22, py + 32, "REPOSITORI PER TAHUN", t=t, **sub)
+    yy = py + 68
     for name, v in YEARS:
-        b += text(0, y + 15, name, size=18, font=MONO, t=t)
-        b += (f'  <rect x="{lx}" y="{y}" width="{round(bw * v / 26)}" height="22" '
-              f'rx="3" fill="{t["accent"]}" opacity="0.85"/>\n')
-        b += text(lx + bw + 18, y + 17, str(v), size=18, weight=700, font=MONO, t=t)
-        y += 34
-
-    y += 22
-    b += rect(0, y, W, 66, t, fill="wash")
-    b += text(24, y + 42, f"{TOTAL_REPOS} repositori publik", size=20, weight=700,
-              fill="accent", font=MONO, t=t)
-    b += text(W - 24, y + 42, "fork tidak dihitung", size=17, fill="muted",
-              font=MONO, anchor="end", t=t)
-    return svg(y + 90, b)
+        b += text(W - pw + 22, yy + 10, name, size=15, font=MONO, t=t)
+        b += (f'  <rect x="{W - pw + 90}" y="{yy}" width="{round(252 * v / 26)}" '
+              f'height="14" rx="3" fill="{t["accent"]}"/>\n')
+        b += text(W - 22, yy + 12, str(v), size=15, weight=700, font=MONO,
+                  anchor="end", t=t)
+        yy += 42
+    b += text(W - pw + 22, py + ph - 20, "fork tidak dihitung", size=13,
+              fill="muted", font=MONO, t=t)
+    return svg(py + ph + 24, b)
 
 
 # ------------------------------------------------------------ stack marquee
@@ -309,6 +388,82 @@ def stack(t) -> str:
     return svg(h, b)
 
 
+# ------------------------------------------------------------------ thanks
+
+# Drawn here rather than borrowed. The reference everyone copies for this slot
+# is a Sanrio character, which is not ours to put on a public profile.
+BUNNY = [
+    "........##........##........",
+    ".......#oo#......#oo#.......",
+    ".......#op#......#po#.......",
+    ".......#op#......#po#.......",
+    ".......#op#......#po#.......",
+    ".......#oo#......#oo#.......",
+    "......##oo##....##oo##......",
+    "......#oooo######oooo#......",
+    ".....#oooooooooooooooo#.....",
+    "....#oooooooooooooooooo#....",
+    "....#ooeeoooooooooeeooo#....",
+    "....#ooeeoooooooooeeooo#....",
+    "....#ooooooooeeoooooooo#....",
+    "....#opoooooooooooooopo#....",
+    ".....#oooooooooooooooo#.....",
+    "......#oooooooooooooo#......",
+    ".......#oooooooooooo#.......",
+    "........############........",
+]
+PINK = "#e8a0a8"
+
+
+def thanks(t) -> str:
+    px = 7
+    gw = len(BUNNY[0]) * px
+    x0 = (W - gw) / 2
+    y0 = 36
+    # Outline and body share one colour, so the grid reads as a solid
+    # silhouette; the eyes take the opposite tone so they stay visible on
+    # either theme. `wash` would put the body within a shade of the page.
+    fill = {"#": t["mark"], "o": t["mark"], "p": PINK, "e": t["markfg"]}
+
+    css = (
+        ".bob{animation:bob 3.2s ease-in-out infinite}"
+        "@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}"
+        ".shut{opacity:0;animation:blink 5s steps(1,end) infinite}"
+        "@keyframes blink{0%,94%{opacity:0}95%,99%{opacity:1}100%{opacity:0}}"
+        ".open{animation:blinkb 5s steps(1,end) infinite}"
+        "@keyframes blinkb{0%,94%{opacity:1}95%,99%{opacity:0}100%{opacity:1}}"
+        "@media(prefers-reduced-motion:reduce){.bob,.shut,.open{animation:none}"
+        ".shut{opacity:0}.open{opacity:1}}"
+    )
+    b = f'  <style>{css}</style>\n  <g class="bob">\n'
+    eyes = []
+    for r, row in enumerate(BUNNY):
+        for c, ch in enumerate(row):
+            if ch == ".":
+                continue
+            x, y = x0 + c * px, y0 + r * px
+            cell = (f'    <rect x="{x}" y="{y}" width="{px}" height="{px}" '
+                    f'fill="{fill[ch]}"/>\n')
+            if ch == "e":
+                eyes.append((x, y))
+            else:
+                b += cell
+    # Eyes as their own layers so a blink is a cross-fade, never a transform.
+    b += '    <g class="open">\n'
+    for x, y in eyes:
+        b += f'      <rect x="{x}" y="{y}" width="{px}" height="{px}" fill="{t["markfg"]}"/>\n'
+    b += '    </g>\n    <g class="shut">\n'
+    for x, y in eyes:
+        if y == y0 + 11 * px:                     # lower eye row only: a closed lid
+            b += f'      <rect x="{x}" y="{y}" width="{px}" height="{px}" fill="{t["markfg"]}"/>\n'
+    b += '    </g>\n  </g>\n'
+
+    ty = y0 + len(BUNNY) * px + 44
+    b += text(W / 2, ty, "TERIMA KASIH SUDAH MAMPIR", size=20, weight=700,
+              fill="accent", font=MONO, spacing=3, anchor="middle", t=t)
+    return svg(ty + 28, b)
+
+
 VISUALS = {
     "hero": hero,
     "s01": lambda t: band("01", "whoami", t),
@@ -320,6 +475,7 @@ VISUALS = {
     "s05": lambda t: band("05", "telemetry", t),
     "telemetry": telemetry,
     "s06": lambda t: band("06", "contribution", t),
+    "thanks": thanks,
 }
 
 # Superseded visuals. Removed on every run so the repo never ships an asset the

@@ -36,6 +36,8 @@
 
 <picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/YonoBengkel/YonoBengkel/output/snake-dark.svg?v=2"/><img src="https://raw.githubusercontent.com/YonoBengkel/YonoBengkel/output/snake.svg?v=2" alt="Grafik kontribusi dimakan ular"/></picture>
 
+<picture><source media="(prefers-color-scheme: dark)" srcset="assets/dark/thanks.svg"/><img src="assets/thanks.svg" alt="Terima kasih sudah mampir"/></picture>
+
 <div align="center">
 
 ### [ilhambintangporto.vercel.app](https://ilhambintangporto.vercel.app)
