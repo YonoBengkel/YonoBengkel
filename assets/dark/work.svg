@@ -1,31 +1,26 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="846" height="838" viewBox="0 0 846 838" role="img">
-  <text x="0" y="34" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="27" font-weight="700" fill="#d9a441">Medallion</text>
-  <text x="846" y="34" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="20" font-weight="400" fill="#9198a1" text-anchor="end">Python · SQL</text>
-  <text x="0" y="72" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="23" font-weight="400" fill="#9198a1">Gudang data batch yang menyatukan penjualan CRM dan ERP. Lapisan</text>
-  <text x="0" y="104" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="23" font-weight="400" fill="#9198a1">bronze–silver–gold, as-of join untuk harga pokok historis.</text>
-  <line x1="0" y1="136" x2="846" y2="136" stroke="#3d444d" stroke-width="1" stroke-dasharray="3 5"/>
-  <text x="0" y="178" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="27" font-weight="700" fill="#d9a441">Data-Quality</text>
-  <text x="846" y="178" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="20" font-weight="400" fill="#9198a1" text-anchor="end">pandas · sklearn</text>
-  <text x="0" y="216" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="23" font-weight="400" fill="#9198a1">Enam dimensi kualitas data dan pemantauan drift 3σ atas 120 baris sintetis.</text>
-  <text x="0" y="248" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="23" font-weight="400" fill="#9198a1">Termasuk simulasi bagaimana satu baris cacat membelokkan garis regresi.</text>
-  <line x1="0" y1="280" x2="846" y2="280" stroke="#3d444d" stroke-width="1" stroke-dasharray="3 5"/>
-  <text x="0" y="322" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="27" font-weight="700" fill="#d9a441">ara-26</text>
-  <text x="846" y="322" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="20" font-weight="400" fill="#9198a1" text-anchor="end">PyTorch</text>
-  <text x="0" y="360" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="23" font-weight="400" fill="#9198a1">Segmentasi kerusakan jalan, ARA ITS 2026. U-Net+++EfficientNet-B4 0.70773 di</text>
-  <text x="0" y="392" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="23" font-weight="400" fill="#9198a1">Kaggle, ensemble rata-rata probabilitas tiga model. Kerja tim.</text>
-  <line x1="0" y1="424" x2="846" y2="424" stroke="#3d444d" stroke-width="1" stroke-dasharray="3 5"/>
-  <text x="0" y="466" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="27" font-weight="700" fill="#d9a441">agent</text>
-  <text x="846" y="466" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="20" font-weight="400" fill="#9198a1" text-anchor="end">Python</text>
-  <text x="0" y="504" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="23" font-weight="400" fill="#9198a1">Tujuh skrip Python tanpa dependensi berat untuk satu knowledge workspace.</text>
-  <text x="0" y="536" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="23" font-weight="400" fill="#9198a1">Recall holdout 0.889, MRR 1.0 pada uji pencarian.</text>
-  <line x1="0" y1="568" x2="846" y2="568" stroke="#3d444d" stroke-width="1" stroke-dasharray="3 5"/>
-  <text x="0" y="610" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="27" font-weight="700" fill="#d9a441">EventDriven-Streaming</text>
-  <text x="846" y="610" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="20" font-weight="400" fill="#9198a1" text-anchor="end">Kafka</text>
-  <text x="0" y="648" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="23" font-weight="400" fill="#9198a1">Pipeline ingesti berbasis Apache Kafka: produser, konsumer, dan penanganan</text>
-  <text x="0" y="680" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="23" font-weight="400" fill="#9198a1">pesan yang datang tidak berurutan.</text>
-  <line x1="0" y1="712" x2="846" y2="712" stroke="#3d444d" stroke-width="1" stroke-dasharray="3 5"/>
-  <text x="0" y="754" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="27" font-weight="700" fill="#d9a441">Warungku</text>
-  <text x="846" y="754" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="20" font-weight="400" fill="#9198a1" text-anchor="end">TypeScript</text>
-  <text x="0" y="792" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="23" font-weight="400" fill="#9198a1">Portal pemilik usaha: stok gudang dan perkiraan kebutuhan. Tim berempat;</text>
-  <text x="0" y="824" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="23" font-weight="400" fill="#9198a1">bagian saya terutama logikanya.</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="846" height="376" viewBox="0 0 846 376" role="img">
+  <rect x="0" y="0" width="411" height="112" rx="6" fill="#161b22" stroke="#3d444d" stroke-width="1"/>
+  <text x="20" y="42" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="23" font-weight="700" fill="#d9a441">Medallion</text>
+  <text x="20" y="78" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#e6edf3">Gudang data CRM + ERP, as-of join</text>
+  <text x="391" y="100" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="17" font-weight="400" fill="#9198a1" text-anchor="end">Python · SQL</text>
+  <rect x="435" y="0" width="411" height="112" rx="6" fill="#161b22" stroke="#3d444d" stroke-width="1"/>
+  <text x="455" y="42" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="23" font-weight="700" fill="#d9a441">Data-Quality</text>
+  <text x="455" y="78" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#e6edf3">Enam dimensi mutu, drift 3σ</text>
+  <text x="826" y="100" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="17" font-weight="400" fill="#9198a1" text-anchor="end">pandas</text>
+  <rect x="0" y="132" width="411" height="112" rx="6" fill="#161b22" stroke="#3d444d" stroke-width="1"/>
+  <text x="20" y="174" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="23" font-weight="700" fill="#d9a441">ara-26</text>
+  <text x="20" y="210" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#e6edf3">Segmentasi jalan, Kaggle 0.70773</text>
+  <text x="391" y="232" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="17" font-weight="400" fill="#9198a1" text-anchor="end">PyTorch</text>
+  <rect x="435" y="132" width="411" height="112" rx="6" fill="#161b22" stroke="#3d444d" stroke-width="1"/>
+  <text x="455" y="174" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="23" font-weight="700" fill="#d9a441">agent</text>
+  <text x="455" y="210" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#e6edf3">Recall 0.889, MRR 1.0</text>
+  <text x="826" y="232" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="17" font-weight="400" fill="#9198a1" text-anchor="end">Python</text>
+  <rect x="0" y="264" width="411" height="112" rx="6" fill="#161b22" stroke="#3d444d" stroke-width="1"/>
+  <text x="20" y="306" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="23" font-weight="700" fill="#d9a441">EventDriven-Streaming</text>
+  <text x="20" y="342" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#e6edf3">Ingesti Kafka, pesan tak urut</text>
+  <text x="391" y="364" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="17" font-weight="400" fill="#9198a1" text-anchor="end">Kafka</text>
+  <rect x="435" y="264" width="411" height="112" rx="6" fill="#161b22" stroke="#3d444d" stroke-width="1"/>
+  <text x="455" y="306" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="23" font-weight="700" fill="#d9a441">Warungku</text>
+  <text x="455" y="342" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#e6edf3">Stok gudang, tim berempat</text>
+  <text x="826" y="364" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="17" font-weight="400" fill="#9198a1" text-anchor="end">TypeScript</text>
 </svg>
