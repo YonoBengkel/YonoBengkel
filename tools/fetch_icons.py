@@ -32,6 +32,7 @@ ICONS = [
     ("postgresql", "original"),
     ("mysql", "original"),
     ("sqlalchemy", "original"),
+    ("duckdb", "original"),
     ("apachekafka", "original"),
     ("apachespark", "original"),
     ("apacheairflow", "original"),

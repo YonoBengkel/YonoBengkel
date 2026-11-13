@@ -18,19 +18,21 @@
 
 | Project | What it is | Stack |
 | --- | --- | --- |
+| **[Con-Fore](https://github.com/YonoBengkel/Con-Fore)** | Public site that explains Indonesia's economy through growth, inflation and unemployment, refreshed by a daily pipeline, with forecasts and backtests · [live](https://con-fore.vercel.app) | Python · Supabase |
+| **[barcelona](https://github.com/YonoBengkel/barcelona)** | Team entry for More than a Hack 2027 (Metrica Sports × FC Barcelona): says who has the ball on every frame of a match, with a temporal convolutional network | Python |
 | **[Medallion](https://github.com/YonoBengkel/Medallion)** | CRM + ERP sales warehouse on bronze–silver–gold layers, with an as-of join so historical cost is read at transaction date | Python · SQL |
+| **[dpw-miniproject](https://github.com/YonoBengkel/dpw-miniproject)** | Event-to-warehouse pipeline: batch and Kafka ingestion under one data contract, Polars transforms, a dbt star schema on DuckDB | Kafka · dbt · DuckDB |
 | **[Data-Quality](https://github.com/YonoBengkel/Data-Quality)** | Six quality dimensions and 3σ drift monitoring over 120 synthetic rows, including how one bad row bends a regression line | pandas · sklearn |
 | **[ara-26](https://github.com/YonoBengkel/ara-26)** | Road damage segmentation for ARA ITS 2026, three models ensembled by averaging probabilities, 0.70773 on Kaggle | PyTorch |
 | **[agent](https://github.com/YonoBengkel/agent)** | Seven dependency-light scripts running one knowledge workspace, 0.889 holdout recall on the retrieval test | Python |
-| **[EventDriven-Streaming](https://github.com/YonoBengkel/EventDriven-Streaming)** | Apache Kafka ingestion pipeline: producers, consumers, and handling messages that arrive out of order | Kafka |
 | **[Warungku](https://github.com/YonoBengkel/Warungku)** | Shop owner portal for warehouse stock and demand forecasting, built by a team of four | TypeScript |
 
 <picture><source media="(prefers-color-scheme: dark)" srcset="assets/dark/s04.svg"/><img src="assets/s04.svg" alt="04 — stack & tools"/></picture>
 
-<img src="assets/stack.svg" alt="Python, Jupyter, pandas, NumPy, scikit-learn, PyTorch, TensorFlow, OpenCV, Plotly, PostgreSQL, MySQL, SQLAlchemy, Apache Kafka, Apache Spark, Apache Airflow, Docker, Git, Linux, Bash, Anaconda, Streamlit, FastAPI, TypeScript, JavaScript, React, Tailwind CSS, VS Code"/>
+<img src="assets/stack.svg" alt="Python, Jupyter, pandas, NumPy, scikit-learn, PyTorch, TensorFlow, OpenCV, Plotly, PostgreSQL, MySQL, SQLAlchemy, DuckDB, Apache Kafka, Apache Spark, Apache Airflow, Docker, Git, Linux, Bash, Anaconda, Streamlit, FastAPI, TypeScript, JavaScript, React, Tailwind CSS, VS Code"/>
 
 <picture><source media="(prefers-color-scheme: dark)" srcset="assets/dark/s05.svg"/><img src="assets/s05.svg" alt="05 — telemetry"/></picture>
-<picture><source media="(prefers-color-scheme: dark)" srcset="assets/dark/telemetry.svg"/><img src="assets/telemetry.svg" alt="32 public repositories: 47 percent Jupyter Notebook, 31 percent Python, 6 percent TypeScript, 6 percent HTML, 9 percent other. 182 public commits. Six new repositories in 2025, twenty-six in 2026."/></picture>
+<picture><source media="(prefers-color-scheme: dark)" srcset="assets/dark/telemetry.svg"/><img src="assets/telemetry.svg" alt="39 public repositories: 49 percent Jupyter Notebook, 33 percent Python, 8 percent TypeScript, 10 percent other. 609 public commits. Six new repositories in 2025, thirty-three in 2026."/></picture>
 
 <picture><source media="(prefers-color-scheme: dark)" srcset="assets/dark/s06.svg"/><img src="assets/s06.svg" alt="06 — contribution"/></picture>
 

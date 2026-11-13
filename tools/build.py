@@ -153,17 +153,18 @@ MAP_TOP = ("FUNDAMENTALS", [
 ])
 MAP_LEFT = ("DATA ENGINEERING", [
     ("Medallion", "bronze → silver → gold"),
-    ("EventDriven-Streaming", "Kafka · out-of-order"),
+    ("dpw-miniproject", "Kafka · dbt · DuckDB"),
     ("Ingestion", "scheduled pulls"),
     ("Data-Quality", "6 dimensions · 3σ drift"),
 ])
 MAP_RIGHT = ("MACHINE LEARNING", [
     ("ara-26", "segmentation · Kaggle"),
-    ("RNN", "time series"),
-    ("Goal-Scorer", "match prediction"),
+    ("barcelona", "ball possession · TCN"),
+    ("LSTM", "export forecasting"),
     ("HeartClass", "clinical classification"),
 ])
 MAP_BOTTOM = ("AGENTS & APPS", [
+    ("Con-Fore", "economy · daily · live"),
     ("agent", "7 scripts · knowledge OS"),
     ("Warungku", "stock · forecasting"),
 ])
@@ -181,6 +182,11 @@ def _node(x, y, name, sub, t, bw=198, bh=58) -> str:
     return b
 
 
+def _row_x(i, n, bw, step=264):
+    """Left edge of box i in a row of n boxes centred on the hub."""
+    return round(W / 2 - bw / 2 + (i - (n - 1) / 2) * step)
+
+
 def system_map(t) -> str:
     """Hub and spokes, with the groups on the four sides of the centre."""
     H, bw, bh = 724, 198, 58
@@ -194,13 +200,13 @@ def system_map(t) -> str:
 
     placed = []                                  # (x, y, name, sub)
     for i, (name, sub) in enumerate(MAP_TOP[1]):
-        placed.append((206 + i * 264, 92, name, sub))
+        placed.append((_row_x(i, len(MAP_TOP[1]), bw), 92, name, sub))
     for i, (name, sub) in enumerate(MAP_LEFT[1]):
         placed.append((8, 190 + i * 104, name, sub))
     for i, (name, sub) in enumerate(MAP_RIGHT[1]):
         placed.append((W - bw - 8, 190 + i * 104, name, sub))
     for i, (name, sub) in enumerate(MAP_BOTTOM[1]):
-        placed.append((206 + i * 264, 620, name, sub))
+        placed.append((_row_x(i, len(MAP_BOTTOM[1]), bw), 620, name, sub))
 
     # Spokes first, so every line passes under the boxes it connects.
     for x, y, _, _ in placed:
@@ -214,7 +220,7 @@ def system_map(t) -> str:
     b += rect(hx, hy, hw, hh, t, fill="band", stroke="accent")
     b += text(cx, hy + 32, "YONOBENGKEL.SYS", size=19, weight=700, fill="accent",
               font=MONO, anchor="middle", t=t)
-    b += text(cx, hy + 54, "32 public repositories", size=15, fill="muted",
+    b += text(cx, hy + 54, f"{TOTAL_REPOS} public repositories", size=15, fill="muted",
               font=MONO, anchor="middle", t=t)
 
     lab = dict(size=15, weight=700, fill="accent", font=MONO, spacing=1)
@@ -227,19 +233,26 @@ def system_map(t) -> str:
 
 # --------------------------------------------------------- FIG. 02 telemetry
 
-# Counted from the GitHub API on 2026-10-18 over non-fork public repositories.
+# Counted from the GitHub API on 2026-11-13 over non-fork public repositories.
 # Primary language only, which is what the API reports per repository.
-LANGS = [("jupyter notebook", 47), ("python", 31), ("typescript", 6),
-         ("html", 6), ("other", 9)]
-YEARS = [("2025", 6), ("2026", 26)]
+# "other" is HTML, C, JavaScript and one repository with no language.
+LANGS = [("jupyter notebook", 49), ("python", 33), ("typescript", 8), ("other", 10)]
+YEARS = [("2025", 6), ("2026", 33)]
 # Cumulative repository count at each month that actually saw a new one.
-GROWTH = [("'25", 2), ("", 3), ("", 6), ("'26", 8), ("", 10), ("", 24), ("oct", 32)]
-BIG = [("32", "REPOSITORIES"), ("182", "PUBLIC COMMITS"),
-       ("6", "FEATURED WORK"), ("3", "LIVE DEMOS")]
-STATS = [("public repositories", "32"), ("public commits", "182"),
-         ("pull requests", "1"), ("repos with a live demo", "3"),
+GROWTH = [("'25", 2), ("", 3), ("", 6), ("'26", 8), ("", 10), ("", 24), ("", 35),
+          ("nov", 39)]
+# Commits: GitHub commit search, author:YonoBengkel (public repositories only,
+# including commits to repositories owned by others). Live demo: homepage set
+# and answering 200 (Con-Fore, portfolio, my-vercel-project; Tambang is 404).
+TOTAL_REPOS = 39
+COMMITS = 609
+FEATURED = 8
+DEMOS = 3
+BIG = [(str(TOTAL_REPOS), "REPOSITORIES"), (str(COMMITS), "PUBLIC COMMITS"),
+       (str(FEATURED), "FEATURED WORK"), (str(DEMOS), "LIVE DEMOS")]
+STATS = [("public repositories", str(TOTAL_REPOS)), ("public commits", str(COMMITS)),
+         ("pull requests", "1"), ("repos with a live demo", str(DEMOS)),
          ("primary languages", "6")]
-TOTAL_REPOS = 32
 
 
 def telemetry(t) -> str:
@@ -261,7 +274,7 @@ def telemetry(t) -> str:
         b += text(0, y + 11, name, size=14, font=MONO, t=t)
         b += (f'  <rect x="0" y="{y + 18}" width="{barw}" height="9" rx="2" '
               f'fill="{t["line"]}"/>\n')
-        b += (f'  <rect x="0" y="{y + 18}" width="{round(barw * pct / 47)}" height="9" '
+        b += (f'  <rect x="0" y="{y + 18}" width="{round(barw * pct / max(p for _, p in LANGS))}" height="9" '
               f'rx="2" fill="{t["accent"]}"/>\n')
         b += text(barw + 12, y + 27, f"{pct}%", size=14, font=MONO, fill="muted", t=t)
         y += 40
@@ -316,7 +329,7 @@ def telemetry(t) -> str:
     yy = py + 68
     for name, v in YEARS:
         b += text(W - pw + 22, yy + 10, name, size=15, font=MONO, t=t)
-        b += (f'  <rect x="{W - pw + 90}" y="{yy}" width="{round(252 * v / 26)}" '
+        b += (f'  <rect x="{W - pw + 90}" y="{yy}" width="{round(252 * v / max(n for _, n in YEARS))}" '
               f'height="14" rx="3" fill="{t["accent"]}"/>\n')
         b += text(W - 22, yy + 12, str(v), size=15, weight=700, font=MONO,
                   anchor="end", t=t)

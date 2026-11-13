@@ -2,8 +2,8 @@
   <text x="0" y="26" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19" font-weight="700" fill="#e6edf3" letter-spacing="1">SYSTEM MAP — ONE PATH, RAW DATA TO DECISION</text>
   <text x="846" y="26" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19" font-weight="400" fill="#9198a1" text-anchor="end">FIG. 01</text>
   <line x1="0" y1="40" x2="846" y2="40" stroke="#3d444d" stroke-width="1"/>
-  <path d="M423.0 362.0 L305.0 121.0" stroke="#3d444d" stroke-width="1" fill="none"/>
-  <path d="M423.0 362.0 L569.0 121.0" stroke="#3d444d" stroke-width="1" fill="none"/>
+  <path d="M423.0 362.0 L291.0 121.0" stroke="#3d444d" stroke-width="1" fill="none"/>
+  <path d="M423.0 362.0 L555.0 121.0" stroke="#3d444d" stroke-width="1" fill="none"/>
   <path d="M423.0 362.0 L107.0 219.0" stroke="#3d444d" stroke-width="1" fill="none"/>
   <path d="M423.0 362.0 L107.0 323.0" stroke="#3d444d" stroke-width="1" fill="none"/>
   <path d="M423.0 362.0 L107.0 427.0" stroke="#3d444d" stroke-width="1" fill="none"/>
@@ -12,20 +12,21 @@
   <path d="M423.0 362.0 L739.0 323.0" stroke="#3d444d" stroke-width="1" fill="none"/>
   <path d="M423.0 362.0 L739.0 427.0" stroke="#3d444d" stroke-width="1" fill="none"/>
   <path d="M423.0 362.0 L739.0 531.0" stroke="#3d444d" stroke-width="1" fill="none"/>
-  <path d="M423.0 362.0 L305.0 649.0" stroke="#3d444d" stroke-width="1" fill="none"/>
-  <path d="M423.0 362.0 L569.0 649.0" stroke="#3d444d" stroke-width="1" fill="none"/>
-  <rect x="206" y="92" width="198" height="58" rx="6" fill="#161b22" stroke="#3d444d" stroke-width="1"/>
-  <text x="305.0" y="118" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="17" font-weight="700" fill="#e6edf3" text-anchor="middle">XOR-Perceptron</text>
-  <text x="305.0" y="138" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" font-weight="400" fill="#9198a1" text-anchor="middle">a boundary no line draws</text>
-  <rect x="470" y="92" width="198" height="58" rx="6" fill="#161b22" stroke="#3d444d" stroke-width="1"/>
-  <text x="569.0" y="118" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="17" font-weight="700" fill="#e6edf3" text-anchor="middle">MLP-Digits</text>
-  <text x="569.0" y="138" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" font-weight="400" fill="#9198a1" text-anchor="middle">8×8 grid · sklearn</text>
+  <path d="M423.0 362.0 L159.0 649.0" stroke="#3d444d" stroke-width="1" fill="none"/>
+  <path d="M423.0 362.0 L423.0 649.0" stroke="#3d444d" stroke-width="1" fill="none"/>
+  <path d="M423.0 362.0 L687.0 649.0" stroke="#3d444d" stroke-width="1" fill="none"/>
+  <rect x="192" y="92" width="198" height="58" rx="6" fill="#161b22" stroke="#3d444d" stroke-width="1"/>
+  <text x="291.0" y="118" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="17" font-weight="700" fill="#e6edf3" text-anchor="middle">XOR-Perceptron</text>
+  <text x="291.0" y="138" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" font-weight="400" fill="#9198a1" text-anchor="middle">a boundary no line draws</text>
+  <rect x="456" y="92" width="198" height="58" rx="6" fill="#161b22" stroke="#3d444d" stroke-width="1"/>
+  <text x="555.0" y="118" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="17" font-weight="700" fill="#e6edf3" text-anchor="middle">MLP-Digits</text>
+  <text x="555.0" y="138" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" font-weight="400" fill="#9198a1" text-anchor="middle">8×8 grid · sklearn</text>
   <rect x="8" y="190" width="198" height="58" rx="6" fill="#161b22" stroke="#3d444d" stroke-width="1"/>
   <text x="107.0" y="216" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="17" font-weight="700" fill="#e6edf3" text-anchor="middle">Medallion</text>
   <text x="107.0" y="236" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" font-weight="400" fill="#9198a1" text-anchor="middle">bronze → silver → gold</text>
   <rect x="8" y="294" width="198" height="58" rx="6" fill="#161b22" stroke="#3d444d" stroke-width="1"/>
-  <text x="107.0" y="320" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" font-weight="700" fill="#e6edf3" text-anchor="middle">EventDriven-Streaming</text>
-  <text x="107.0" y="340" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" font-weight="400" fill="#9198a1" text-anchor="middle">Kafka · out-of-order</text>
+  <text x="107.0" y="320" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="17" font-weight="700" fill="#e6edf3" text-anchor="middle">dpw-miniproject</text>
+  <text x="107.0" y="340" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" font-weight="400" fill="#9198a1" text-anchor="middle">Kafka · dbt · DuckDB</text>
   <rect x="8" y="398" width="198" height="58" rx="6" fill="#161b22" stroke="#3d444d" stroke-width="1"/>
   <text x="107.0" y="424" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="17" font-weight="700" fill="#e6edf3" text-anchor="middle">Ingestion</text>
   <text x="107.0" y="444" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" font-weight="400" fill="#9198a1" text-anchor="middle">scheduled pulls</text>
@@ -36,23 +37,26 @@
   <text x="739.0" y="216" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="17" font-weight="700" fill="#e6edf3" text-anchor="middle">ara-26</text>
   <text x="739.0" y="236" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" font-weight="400" fill="#9198a1" text-anchor="middle">segmentation · Kaggle</text>
   <rect x="640" y="294" width="198" height="58" rx="6" fill="#161b22" stroke="#3d444d" stroke-width="1"/>
-  <text x="739.0" y="320" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="17" font-weight="700" fill="#e6edf3" text-anchor="middle">RNN</text>
-  <text x="739.0" y="340" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" font-weight="400" fill="#9198a1" text-anchor="middle">time series</text>
+  <text x="739.0" y="320" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="17" font-weight="700" fill="#e6edf3" text-anchor="middle">barcelona</text>
+  <text x="739.0" y="340" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" font-weight="400" fill="#9198a1" text-anchor="middle">ball possession · TCN</text>
   <rect x="640" y="398" width="198" height="58" rx="6" fill="#161b22" stroke="#3d444d" stroke-width="1"/>
-  <text x="739.0" y="424" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="17" font-weight="700" fill="#e6edf3" text-anchor="middle">Goal-Scorer</text>
-  <text x="739.0" y="444" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" font-weight="400" fill="#9198a1" text-anchor="middle">match prediction</text>
+  <text x="739.0" y="424" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="17" font-weight="700" fill="#e6edf3" text-anchor="middle">LSTM</text>
+  <text x="739.0" y="444" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" font-weight="400" fill="#9198a1" text-anchor="middle">export forecasting</text>
   <rect x="640" y="502" width="198" height="58" rx="6" fill="#161b22" stroke="#3d444d" stroke-width="1"/>
   <text x="739.0" y="528" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="17" font-weight="700" fill="#e6edf3" text-anchor="middle">HeartClass</text>
   <text x="739.0" y="548" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" font-weight="400" fill="#9198a1" text-anchor="middle">clinical classification</text>
-  <rect x="206" y="620" width="198" height="58" rx="6" fill="#161b22" stroke="#3d444d" stroke-width="1"/>
-  <text x="305.0" y="646" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="17" font-weight="700" fill="#e6edf3" text-anchor="middle">agent</text>
-  <text x="305.0" y="666" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" font-weight="400" fill="#9198a1" text-anchor="middle">7 scripts · knowledge OS</text>
-  <rect x="470" y="620" width="198" height="58" rx="6" fill="#161b22" stroke="#3d444d" stroke-width="1"/>
-  <text x="569.0" y="646" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="17" font-weight="700" fill="#e6edf3" text-anchor="middle">Warungku</text>
-  <text x="569.0" y="666" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" font-weight="400" fill="#9198a1" text-anchor="middle">stock · forecasting</text>
+  <rect x="60" y="620" width="198" height="58" rx="6" fill="#161b22" stroke="#3d444d" stroke-width="1"/>
+  <text x="159.0" y="646" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="17" font-weight="700" fill="#e6edf3" text-anchor="middle">Con-Fore</text>
+  <text x="159.0" y="666" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" font-weight="400" fill="#9198a1" text-anchor="middle">economy · daily · live</text>
+  <rect x="324" y="620" width="198" height="58" rx="6" fill="#161b22" stroke="#3d444d" stroke-width="1"/>
+  <text x="423.0" y="646" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="17" font-weight="700" fill="#e6edf3" text-anchor="middle">agent</text>
+  <text x="423.0" y="666" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" font-weight="400" fill="#9198a1" text-anchor="middle">7 scripts · knowledge OS</text>
+  <rect x="588" y="620" width="198" height="58" rx="6" fill="#161b22" stroke="#3d444d" stroke-width="1"/>
+  <text x="687.0" y="646" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="17" font-weight="700" fill="#e6edf3" text-anchor="middle">Warungku</text>
+  <text x="687.0" y="666" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" font-weight="400" fill="#9198a1" text-anchor="middle">stock · forecasting</text>
   <rect x="318" y="326" width="210" height="72" rx="6" fill="#21262d" stroke="#d9a441" stroke-width="1"/>
   <text x="423.0" y="358" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19" font-weight="700" fill="#d9a441" text-anchor="middle">YONOBENGKEL.SYS</text>
-  <text x="423.0" y="380" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15" font-weight="400" fill="#9198a1" text-anchor="middle">32 public repositories</text>
+  <text x="423.0" y="380" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15" font-weight="400" fill="#9198a1" text-anchor="middle">39 public repositories</text>
   <text x="423" y="74" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15" font-weight="700" fill="#d9a441" text-anchor="middle" letter-spacing="1">FUNDAMENTALS</text>
   <text x="8" y="174" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15" font-weight="700" fill="#d9a441" letter-spacing="1">DATA ENGINEERING</text>
   <text x="838" y="174" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15" font-weight="700" fill="#d9a441" text-anchor="end" letter-spacing="1">MACHINE LEARNING</text>
